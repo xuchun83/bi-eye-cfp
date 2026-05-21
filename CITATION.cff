@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "DOX: Binocular CFP Ocular Disease Detection via RETFound Fine-tuning and Dual-Stream Feature Fusion"
+abstract: >-
+  A multi-label ocular disease detection framework that fine-tunes the
+  RETFound foundation model with a hybrid Adapter-LoRA strategy
+  (< 2 % trainable parameters) and a dual-stream binocular feature
+  fusion module (DBFEM). Achieves 84.61 % AUC and 53.92 % F1-score
+  on the ODIR-5K offline test set.
+authors:
+  - family-names: Li
+    given-names: Shunuo
+    affiliation: "School of Computer Science and Engineering, Central South University"
+  - family-names: Yue
+    given-names: Tong
+    affiliation: "School of Computer Science and Engineering, Central South University"
+  - family-names: Xu
+    given-names: Chun
+    affiliation: "School of Computer Science and Engineering, Central South University"
+  - family-names: Zhang
+    given-names: Yawen
+    affiliation: "School of Computer Science and Engineering, Central South University"
+  - family-names: Liu
+    given-names: Jialing
+    affiliation: "School of Computer Science and Engineering, Central South University"
+version: "1.0.0"
+date-released: "2025-12-01"
+license: MIT
+keywords:
+  - color fundus photography
+  - foundation model
+  - parameter-efficient fine-tuning
+  - LoRA
+  - Adapter
+  - multi-label classification
+  - binocular fusion
+  - RETFound
+  - ophthalmology
+repository-code: "https://github.com/<your-org>/DOX"

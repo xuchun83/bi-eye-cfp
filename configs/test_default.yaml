@@ -1,0 +1,33 @@
+# ============================================================
+# DOX 默认评估配置
+#
+# 用法：
+#   python -m train.test --config configs/test_default.yaml \
+#       --checkpoint    work_dir/dox_default/checkpoint_best.pth \
+#       --testset       /path/to/ODIR-5K/off_site_test/Images \
+#       --test-csv-path /path/to/ODIR-5K/off_site_test/labels.xlsx
+# ============================================================
+
+batch_size: 32
+num_workers: 4
+device: cuda
+
+# 模型超参 (必须与训练时一致)
+r: 4
+adapter_dim: 128
+dropout: 0.1
+
+# 类别差异化阈值 (论文表 / 实际临床建议)
+thresholds:
+  N: 0.7  # Normal
+  D: 0.7  # Diabetic Retinopathy
+  G: 0.5  # Glaucoma (单眼先发，召回优先)
+  C: 0.7  # Cataract
+  A: 0.7  # AMD
+  H: 0.4  # Hypertension (样本极少，召回优先)
+  M: 0.8  # Myopia (假阳代价高，特异性优先)
+  O: 0.6  # Other
+
+# 可选输出
+pred_save_dir: null   # 例如：work_dir/dox_default/eval_predictions
+metric_json:   null   # 例如：work_dir/dox_default/eval_metrics.json

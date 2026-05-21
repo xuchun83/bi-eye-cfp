@@ -1,0 +1,52 @@
+# ============================================================
+# DOX 默认训练配置 —— 复现论文实验结果
+#
+# 用法：
+#   python -m train.training --config configs/train_default.yaml \
+#       --trainset       /path/to/ODIR-5K/Training_Images \
+#       --train-csv-path /path/to/ODIR-5K/labels.xlsx
+#
+# 命令行参数会覆盖本文件中的同名字段。
+# ============================================================
+
+# ---- 实验标识 ----
+exp_name: dox_default
+work_dir: work_dir
+
+# ---- 数据 ----
+# trainset 和 train_csv_path 通常在命令行指定，避免泄露绝对路径
+val_ratio: 0.2
+num_workers: 8
+seed: 42
+
+# ---- 模型 ----
+net: MODEL
+r: 4              # LoRA 低秩
+adapter_dim: 128  # Conv-Adapter 通道数
+dropout: 0.1
+
+# 预训练权重 (RETFound MAE)；填空字符串 / null 时使用随机初始化
+pre_checkpoint: null
+
+# ---- 训练循环 ----
+epoch: 100
+warmup_epoch: 10
+batch_size: 32
+
+# ---- 优化器 (AdamW + Warmup→Cosine) ----
+lr: 1.0e-3
+weight_decay: 0.01
+gradient_clip: 0.1
+
+# ---- 非对称多标签损失 ----
+asl_gamma_pos: 0.0
+asl_gamma_neg: 4.0
+asl_clip: 0.05
+
+# ---- 硬件 / 分布式 ----
+distributed: false  # 使用 torchrun + --distributed 启用
+gpu_device: 0
+
+# ---- 日志 / 检查点 ----
+save_interval: null   # null = 仅保存 best & latest；填整数会按间隔额外保存
+is_show: false        # true 时打印每层参数信息
